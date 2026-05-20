@@ -8,51 +8,40 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Arthabumi">
 <meta name="theme-color" content="#0f172a">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExNCIgZmlsbD0iIzBmMTcyYSIvPjx0ZXh0IHg9IjI1NiIgeT0iMzMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjIwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzEwYjk4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QUI8L3RleHQ+PC9zdmc+">
 <style>
-/* ========== RESET & GLOBAL ========== */
+/* (sama seperti sebelumnya, tidak berubah) */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;-webkit-text-size-adjust:100%;overflow:hidden}
 #app{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
 *{-webkit-tap-highlight-color:transparent}
 input,select,textarea{-webkit-appearance:none;appearance:none;font-family:inherit;font-size:16px;background:#fff}
 button{-webkit-appearance:none;font-family:inherit}
-
-/* ========== SPLASH SCREEN ========== */
 #spl{position:fixed;inset:0;background:#0f172a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:9999;transition:opacity .3s}
 #spl.out{opacity:0;pointer-events:none}
 .spl-logo{color:#10b981;font-size:2rem;font-weight:800;letter-spacing:-1px}
 .spl-sub{color:#475569;font-size:.8rem}
 .spin{width:28px;height:28px;border:3px solid #1e293b;border-top-color:#10b981;border-radius:50%;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-/* ========== HEADER ========== */
 #hdr{background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;flex-shrink:0;height:calc(48px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
 .hdr-logo{font-weight:800;font-size:16px;color:#10b981}
 .hdr-sync{font-size:11px;margin-top:1px}
 .hdr-acts{display:flex;gap:6px}
 .hdr-btn{background:rgba(255,255,255,.1);border:none;color:#cbd5e1;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer}
-
-/* ========== CONTENT & NAV ========== */
 #content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px 20px}
 #nav{background:#0f172a;display:flex;overflow-x:auto;flex-shrink:0;border-top:1px solid rgba(255,255,255,.08);padding-bottom:env(safe-area-inset-bottom,0px);scrollbar-width:none}
 #nav::-webkit-scrollbar{display:none}
 .nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:9px 10px;min-width:56px;flex-shrink:0;border:none;background:none;cursor:pointer;color:#64748b}
 .nav-btn.on{color:#10b981}
 .nav-dot{width:4px;height:4px;background:#10b981;border-radius:50%;margin-top:1px}
-
-/* ========== TOAST ========== */
 #toast{position:fixed;bottom:85px;left:12px;right:12px;z-index:800;padding:11px 15px;border-radius:13px;color:#fff;font-size:13px;font-weight:500;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.25);display:none;animation:tin .2s ease}
 @keyframes tin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .t-ok{background:#10b981}.t-err{background:#ef4444}.t-info{background:#3b82f6}
-
-/* ========== MODAL ========== */
 #overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:14px;padding-top:56px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 #overlay.show{display:flex}
 .modal{background:#fff;border-radius:20px;width:100%;max-width:480px;padding:18px;position:relative;margin-bottom:20px}
 .modal-x{position:absolute;top:14px;right:14px;background:#f1f5f9;border:none;border-radius:8px;width:30px;height:30px;font-size:15px;cursor:pointer;color:#64748b}
 .modal-title{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:14px;padding-right:28px}
-
-/* ========== CARDS & LAYOUT ========== */
 .card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.07);border:1px solid #f1f5f9;padding:13px;margin-bottom:9px}
 .sub-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:11px;margin-bottom:8px}
 .sec-title{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:11px}
@@ -67,15 +56,11 @@ button{-webkit-appearance:none;font-family:inherit}
 .chip-val{font-size:12px;font-weight:700;color:#1e293b}
 .empty{text-align:center;padding:40px 20px;color:#94a3b8;font-size:14px}
 .act-row{display:flex;gap:8px;margin-top:8px}
-
-/* ========== FORM ========== */
 .fg{margin-bottom:11px}
 .fl{display:block;font-size:11px;font-weight:600;color:#475569;margin-bottom:4px}
 .req{color:#ef4444;margin-left:2px}
 .fc{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;font-size:15px;color:#1e293b;outline:none;transition:border-color .15s}
 .fc:focus{border-color:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.1)}
-
-/* ========== BUTTONS ========== */
 .btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:10px;padding:10px 16px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .15s}
 .btn:active{opacity:.8}
 .btn-p{background:#10b981;color:#fff}
@@ -84,8 +69,6 @@ button{-webkit-appearance:none;font-family:inherit}
 .btn-o{background:#fff;color:#10b981;border:1.5px solid #10b981}
 .btn-sm{padding:7px 13px;font-size:12.5px;border-radius:9px}
 .btn-w{width:100%}
-
-/* ========== BADGES ========== */
 .bdg{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;white-space:nowrap}
 .bdg-blue{background:#dbeafe;color:#1d4ed8}
 .bdg-green{background:#dcfce7;color:#15803d}
@@ -94,24 +77,16 @@ button{-webkit-appearance:none;font-family:inherit}
 .bdg-gray{background:#f1f5f9;color:#475569}
 .bdg-orange{background:#fed7aa;color:#c2410c}
 .bdg-purple{background:#ede9fe;color:#7c3aed}
-
-/* ========== KPI ========== */
 .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
 .kpi{background:#fff;border-radius:13px;padding:11px 13px;box-shadow:0 1px 4px rgba(0,0,0,.07);border:1px solid #f1f5f9}
 .kpi-lbl{font-size:9.5px;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
 .kpi-val{font-size:13px;font-weight:700;color:#1e293b;word-break:break-word}
-
-/* ========== TABS ========== */
 .tabs{display:flex;gap:5px;flex-wrap:wrap}
 .tab{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;border:none;cursor:pointer}
 .tab-on{background:#10b981;color:#fff}
 .tab-off{background:#f1f5f9;color:#64748b}
-
-/* ========== INFO BOX ========== */
 .info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:11px;padding:11px;font-size:11.5px;color:#1d4ed8;line-height:1.5;margin-bottom:11px}
 .info-box ol{padding-left:15px;margin-top:5px}
-
-/* ========== PROGRESS BAR ========== */
 .prog-bar{background:#e2e8f0;border-radius:99px;height:6px;overflow:hidden;margin-top:4px}
 .prog-fill{height:100%;border-radius:99px;transition:width .3s}
 </style>
@@ -148,7 +123,7 @@ button{-webkit-appearance:none;font-family:inherit}
 <script>
 'use strict';
 // ═══════════════════════════════════════════════════
-// ARTHABUMI v1.9 — Format Angka Titik Ribuan + Hapus Kasbon
+// ARTHABUMI v1.8.1 — Format Angka + Hapus Kasbon
 // Pure Vanilla JS — Zero Dependencies
 // ═══════════════════════════════════════════════════
 
@@ -165,6 +140,18 @@ function parseAngka(str) {
   let cleaned = String(str).replace(/\./g, '').replace(/,/g, '.');
   let num = Number(cleaned);
   return isNaN(num) ? 0 : num;
+}
+// Terapkan formatting ke semua input angka dalam container
+function applyNumberFormatting(container) {
+  if(!container) return;
+  const angkaInputs = container.querySelectorAll('.num-format');
+  angkaInputs.forEach(inp => {
+    if(inp.value) inp.value = formatAngkaInput(parseAngka(inp.value));
+    inp.addEventListener('blur', function(){
+      let v = parseAngka(this.value);
+      this.value = formatAngkaInput(v);
+    });
+  });
 }
 
 const S = {
@@ -312,10 +299,12 @@ function go(page){
   document.getElementById('content').innerHTML=buildPage(page);
   document.getElementById('nav').innerHTML=buildNav();
   window.scrollTo&&window.scrollTo(0,0);
+  // Terapkan formatting angka setelah konten dirender
+  setTimeout(()=>applyNumberFormatting(document.getElementById('content')), 50);
 }
 
 // ── Modal ──────────────────────────────────────────
-function openModal(html){document.getElementById('modal-body').innerHTML=html;document.getElementById('overlay').classList.add('show');}
+function openModal(html){document.getElementById('modal-body').innerHTML=html;document.getElementById('overlay').classList.add('show'); setTimeout(()=>applyNumberFormatting(document.getElementById('modal-body')), 50);}
 function closeModal(){document.getElementById('overlay').classList.remove('show');}
 function openSettings(){
   openModal(`
@@ -364,7 +353,7 @@ function buildPage(p){
 }
 
 // ════════════════════════════════════════════════════
-// ── DASHBOARD ────────────────────────────────────────
+// ── DASHBOARD (tidak berubah) ───────────────────────
 function setDashFilter(v){S.dashFilter=v;go('dashboard');}
 function pgDashboard(){
   const filtered=S.dashFilter==='Semua'?S.projects:S.projects.filter(p=>p.status===S.dashFilter);
@@ -419,7 +408,7 @@ function pgDashboard(){
 }
 
 // ════════════════════════════════════════════════════
-// ── MASTER PROYEK (format angka) ─────────────────────
+// ── PROYEK (dengan format angka) ────────────────────
 function pgProject(){
   return `<div class="row" style="margin-bottom:11px">
     <div class="sec-title" style="margin:0">Master Proyek</div>
@@ -445,13 +434,12 @@ function openAddProject(){
     <div class="fg"><label class="fl">Status</label><select class="fc" id="p-sts"><option>Berjalan</option><option>Selesai</option><option>Hold</option><option>Batal</option></select></div></div>
     <div class="fg"><label class="fl">Nama Proyek<span class="req">*</span></label><input class="fc" id="p-nama" placeholder="Renovasi Pak Budi"></div>
     <div class="g2"><div class="fg"><label class="fl">Jenis</label><select class="fc" id="p-jenis"><option>Renovasi</option><option>Pembangunan</option><option>Interior</option><option>Besi</option><option>Waterproofing</option><option>Lainnya</option></select></div>
-    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" type="text" id="p-kontrak" placeholder="350000000"></div></div>
+    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc num-format" id="p-kontrak" type="text" placeholder="350000000"></div></div>
     <div class="fg"><label class="fl">Tgl Mulai</label><input class="fc" id="p-tgl" type="date"></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveProject()">💾 Simpan</button>
     </div>`);
-  setTimeout(()=>{const el=document.getElementById('p-kontrak');if(el){el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});}},50);
 }
 function openEditProject(i){
   const p=S.projects[i];
@@ -461,13 +449,12 @@ function openEditProject(i){
     <div class="fg"><label class="fl">Status</label><select class="fc" id="p-sts"><option ${p.status==='Berjalan'?'selected':''}>Berjalan</option><option ${p.status==='Selesai'?'selected':''}>Selesai</option><option ${p.status==='Hold'?'selected':''}>Hold</option><option ${p.status==='Batal'?'selected':''}>Batal</option></select></div></div>
     <div class="fg"><label class="fl">Nama Proyek<span class="req">*</span></label><input class="fc" id="p-nama" value="${esc(p.nama)}"></div>
     <div class="g2"><div class="fg"><label class="fl">Jenis</label><select class="fc" id="p-jenis"><option ${p.jenis==='Renovasi'?'selected':''}>Renovasi</option><option ${p.jenis==='Pembangunan'?'selected':''}>Pembangunan</option><option ${p.jenis==='Interior'?'selected':''}>Interior</option><option ${p.jenis==='Besi'?'selected':''}>Besi</option><option ${p.jenis==='Waterproofing'?'selected':''}>Waterproofing</option><option ${p.jenis==='Lainnya'?'selected':''}>Lainnya</option></select></div>
-    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" type="text" id="p-kontrak" value="${formatAngkaInput(p.nilaiKontrak)}"></div></div>
+    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc num-format" id="p-kontrak" type="text" value="${formatAngkaInput(p.nilaiKontrak)}"></div></div>
     <div class="fg"><label class="fl">Tgl Mulai</label><input class="fc" id="p-tgl" type="date" value="${p.tglMulai||''}"></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveProject(true)">💾 Simpan</button>
     </div>`);
-  setTimeout(()=>{const el=document.getElementById('p-kontrak');if(el){el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});}},50);
 }
 function saveProject(isEdit){
   const kode=document.getElementById('p-kode').value.trim();
@@ -511,7 +498,7 @@ function beliInput(){
     </div>
     <div class="g3">
       <div class="fg"><label class="fl">Qty</label><input class="fc" type="number" value="${it.qty}" oninput="S.formItems[${i}].qty=this.value"></div>
-      <div class="fg"><label class="fl">Harga</label><input class="fc" type="text" value="${formatAngkaInput(it.harga)}" oninput="S.formItems[${i}].harga=parseAngka(this.value)"></div>
+      <div class="fg"><label class="fl">Harga</label><input class="fc num-format" type="text" value="${formatAngkaInput(it.harga)}" oninput="S.formItems[${i}].harga=parseAngka(this.value)"></div>
       <div class="fg"><label class="fl">Diskon%</label><input class="fc" type="number" value="${it.diskon}" oninput="S.formItems[${i}].diskon=this.value"></div>
     </div>
     <div class="g2">
@@ -537,7 +524,8 @@ function beliInput(){
 }
 function beliLog(){
   const list=[...S.pembelian].reverse().slice(0,60);
-  return list.length===0?'<div class="empty">Belum ada data</div>':list.map(b=>{
+  if(list.length===0)return '<div class="empty">Belum ada data</div>';
+  return list.map(b=>{
     const ri=S.pembelian.findIndex(x=>x.id===b.id);
     return `<div class="card"><div class="row" style="margin-bottom:6px">
       <div style="flex:1;min-width:0"><div class="item-name">${esc(b.namaBarang)}</div><div class="item-sub">${fDate(b.tgl)} · ${esc(b.kodeProj)} · ${esc(b.toko||'')}</div></div>
@@ -620,7 +608,7 @@ function applyPasteBeli(){
 }
 
 // ════════════════════════════════════════════════════
-// ── MASTER KARYAWAN (format angka) ──────────────────
+// ── KARYAWAN (format angka) ────────────────────────
 function pgKaryawan(){
   return `<div class="row" style="margin-bottom:11px">
     <div class="sec-title" style="margin:0">Karyawan</div>
@@ -652,21 +640,15 @@ function krModal(k,i){
     <div class="g2"><div class="fg"><label class="fl">ID<span class="req">*</span></label><input class="fc" id="k-id" value="${isEdit?esc(k.id):padId('KRY',S.karyawan)}" ${isEdit?'disabled':''}></div>
     <div class="fg"><label class="fl">Jabatan</label><select class="fc" id="k-jab">${['Mandor','Tukang','Pembantu','Tim Besi','Tim Interior'].map(j=>`<option ${isEdit&&k.jabatan===j?'selected':''}>${j}</option>`).join('')}</select></div></div>
     <div class="fg"><label class="fl">Nama<span class="req">*</span></label><input class="fc" id="k-nama" value="${isEdit?esc(k.nama):''}"></div>
-    <div class="g2"><div class="fg"><label class="fl">Upah Harian<span class="req">*</span></label><input class="fc" type="text" id="k-upah" value="${isEdit?formatAngkaInput(k.upahHarian):''}"></div>
+    <div class="g2"><div class="fg"><label class="fl">Upah Harian<span class="req">*</span></label><input class="fc num-format" id="k-upah" type="text" value="${isEdit?formatAngkaInput(k.upahHarian):''}"></div>
     <div class="fg"><label class="fl">No HP</label><input class="fc" id="k-hp" type="tel" value="${isEdit?esc(k.noHP||''):''}"></div></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveKaryawan(${isEdit})">💾 Simpan</button>
     </div>`;
 }
-function openAddKaryawan(){openModal(krModal(null,null)); setTimeout(()=>{formatKaryawanNumber();},50);}
-function openEditKaryawan(i){openModal(krModal(S.karyawan[i],i)); setTimeout(()=>{formatKaryawanNumber();},50);}
-function formatKaryawanNumber(){
-  const el=document.getElementById('k-upah');
-  if(el){
-    el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
-  }
-}
+function openAddKaryawan(){openModal(krModal(null,null));}
+function openEditKaryawan(i){openModal(krModal(S.karyawan[i],i));}
 function saveKaryawan(isEdit){
   const id=document.getElementById('k-id').value.trim();
   const nama=document.getElementById('k-nama').value.trim();
@@ -681,11 +663,83 @@ function saveKaryawan(isEdit){
 function delKaryawan(id){if(!confirm('Hapus '+id+'?'))return;S.karyawan=S.karyawan.filter(k=>k.id!==id);ss(KS.kr,S.karyawan);go('karyawan');showToast('🗑 Dihapus');doSync('deleteKaryawan',{id});}
 
 // ════════════════════════════════════════════════════
-// ── ABSENSI (tidak ada format angka) ────────────────
-function pgAbsensi(){...} // (sama seperti versi sebelumnya, tidak perlu diubah untuk format angka)
+// ── ABSENSI (tidak perlu format angka) ──────────────
+function pgAbsensi(){
+  const tab=S.tab.absensi||'input';
+  return `<div class="row" style="margin-bottom:11px">
+    <div class="sec-title" style="margin:0">Absensi Harian</div>
+    <div class="tabs"><button class="tab ${tab==='input'?'tab-on':'tab-off'}" onclick="setTab('absensi','input')">Input</button><button class="tab ${tab==='log'?'tab-on':'tab-off'}" onclick="setTab('absensi','log')">Log</button></div>
+  </div>${tab==='input'?absInput():absLog()}`;
+}
+function absInput(){
+  const STS=['Hadir','Setengah','Tidak Hadir','Libur'];
+  const STS_FULL={'Hadir':'Hadir','Setengah':'Setengah Hari','Tidak Hadir':'Tidak Hadir','Libur':'Libur'};
+  const STS_COLOR={'Hadir':'#10b981','Setengah':'#f59e0b','Tidak Hadir':'#ef4444','Libur':'#94a3b8'};
+  const rows=S.karyawan.map((k,i)=>{
+    const r=S.absRows[i]||{status:'',kodeProj:'',ket:''};
+    const curFull=r.status;
+    const upahHariIni=curFull==='Hadir'?k.upahHarian:curFull==='Setengah Hari'?k.upahHarian*0.5:0;
+    const stsBtns=STS.map(s=>{const full=STS_FULL[s],active=curFull===full,col=STS_COLOR[s];return `<button type="button" onclick="setAbsRow(${i},'status','${full}')" style="flex:1;padding:8px 2px;border-radius:9px;border:2px solid ${active?col:'#e2e8f0'};background:${active?col:'#fff'};color:${active?'#fff':'#64748b'};font-size:11px;font-weight:600;cursor:pointer">${s}</button>`;}).join('');
+    const projSel=`<select class="fc" style="font-size:13px" onchange="setAbsRow(${i},'kodeProj',this.value)"><option value="">— Default —</option>${S.projects.map(p=>`<option value="${esc(p.kode)}" ${r.kodeProj===p.kode?'selected':''}>${esc(p.nama)}</option>`).join('')}</select>`;
+    return `<div class="card" style="margin-bottom:8px">
+      <div class="row" style="margin-bottom:8px">
+        <div><div class="item-name">${esc(k.nama)}</div><div class="item-sub">${k.jabatan} · ${fRp(k.upahHarian)}/hr</div></div>
+        ${upahHariIni>0?`<span style="font-weight:700;color:#10b981;font-size:14px;flex-shrink:0">${fRp(upahHariIni)}</span>`:'<span style="font-size:11px;color:#94a3b8">Belum pilih</span>'}
+      </div>
+      <div style="display:flex;gap:5px;margin-bottom:8px">${stsBtns}</div>
+      <div class="fg" style="margin-bottom:0">${projSel}</div>
+    </div>`;
+  }).join('');
+  return `<div class="card" style="margin-bottom:10px">
+    <div class="g2">
+      <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="abs-tgl" value="${today()}"></div>
+      <div class="fg"><label class="fl">Proyek Default</label><select class="fc" id="abs-prj"><option value="">— Tidak ada —</option>${S.projects.map(p=>`<option value="${esc(p.kode)}">${esc(p.nama)}</option>`).join('')}</select></div>
+    </div>
+    <div style="font-size:11px;color:#94a3b8;margin-top:-4px">💡 Proyek default untuk karyawan yang belum pilih</div>
+  </div>
+  ${S.karyawan.length===0?'<div class="empty">Tambah karyawan dulu</div>':rows}
+  ${S.karyawan.length>0?`<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;padding:10px;margin-bottom:10px;font-size:12px;color:#15803d">
+    ✅ Hadir: <strong>${S.karyawan.filter((_,i)=>S.absRows[i]?.status==='Hadir').length}</strong> &nbsp;
+    🟡 Setengah: <strong>${S.karyawan.filter((_,i)=>S.absRows[i]?.status==='Setengah Hari').length}</strong> &nbsp;
+    ❌ Tidak: <strong>${S.karyawan.filter((_,i)=>S.absRows[i]?.status==='Tidak Hadir').length}</strong>
+  </div>
+  <button class="btn btn-p btn-w" onclick="submitAbsensi()">💾 Simpan Absensi</button>`:''}`;
+}
+function setAbsRow(i,key,val){if(!S.absRows[i])S.absRows[i]={status:'',kodeProj:'',ket:''};S.absRows[i][key]=val;if(key==='status')go('absensi');}
+function submitAbsensi(){
+  const tgl=document.getElementById('abs-tgl')?.value||today();
+  const defProj=document.getElementById('abs-prj')?.value||'';
+  const active=S.karyawan.map((k,i)=>({k,r:S.absRows[i]||{}})).filter(({r})=>r.status&&r.status!=='Tidak Hadir'&&r.status!=='Libur');
+  if(!active.length){showToast('Pilih status minimal 1 karyawan','err');return;}
+  const newAbs=active.map(({k,r})=>{const upah=r.status==='Hadir'?k.upahHarian:r.status==='Setengah Hari'?k.upahHarian*0.5:0;return{id:'ABS-'+Date.now()+'-'+k.id,tgl,idKaryawan:k.id,nama:k.nama,status:r.status,kodeProj:r.kodeProj||defProj,upahHariIni:upah,statusBayar:'Belum Dibayar',noClosing:'',ket:r.ket||''};});
+  S.logAbsensi.push(...newAbs);ss(KS.abs,S.logAbsensi);
+  showToast('✅ Absensi '+active.length+' karyawan tersimpan');S.absRows=[];setTab('absensi','log');
+  doSync('addAbsensi',newAbs.map(a=>({tgl:a.tgl,idKaryawan:a.idKaryawan,status:a.status,kodeProj:a.kodeProj,upahHariIni:a.upahHariIni,ket:a.ket})));
+}
+function absLog(){
+  const list=[...S.logAbsensi].reverse().slice(0,80);
+  if(!list.length)return '<div class="empty">Belum ada data</div>';
+  return list.map(a=>{
+    const ri=S.logAbsensi.findIndex(x=>x.id===a.id);
+    return `<div class="card"><div class="row" style="margin-bottom:6px">
+      <div style="flex:1;min-width:0"><div class="item-name">${esc(a.nama)}</div><div class="item-sub">${fDate(a.tgl)} · ${esc(a.kodeProj||'')} · ${fRp(a.upahHariIni)}</div></div>
+      <div style="display:flex;align-items:center;gap:6px;margin-left:8px;flex-shrink:0">
+        ${bdg(a.status)}
+        ${a.statusBayar!=='Sudah Dibayar'?`<button style="background:#fee2e2;border:none;border-radius:7px;padding:4px 8px;font-size:12px;cursor:pointer;color:#b91c1c" onclick="delAbsensi(${ri})">🗑</button>`:''}
+      </div>
+    </div><div>${bdg(a.statusBayar)}</div></div>`;
+  }).join('');
+}
+function delAbsensi(idx){
+  const a=S.logAbsensi[idx];if(!a)return;
+  if(a.statusBayar==='Sudah Dibayar'){showToast('Tidak bisa hapus — sudah di-closing','err');return;}
+  if(!confirm('Hapus absensi '+esc(a.nama)+'?'))return;
+  S.logAbsensi.splice(idx,1);ss(KS.abs,S.logAbsensi);showToast('🗑 Dihapus');go('absensi');
+  doSync('deleteAbsensi',{tgl:a.tgl,idKaryawan:a.idKaryawan});
+}
 
 // ════════════════════════════════════════════════════
-// ── KASBON (format angka + HAPUS LOG) ───────────────
+// ── KASBON (format angka + hapus) ──────────────────
 function pgKasbon(){
   const tab=S.tab.kasbon||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -703,7 +757,7 @@ function kasbonInput(){
     <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="ksb-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Karyawan</label><select class="fc" id="ksb-kr">${krOpts}</select></div>
     <div class="fg"><label class="fl">Tipe</label><select class="fc" id="ksb-tipe"><option>AMBIL</option><option>POTONG</option></select></div>
-    <div class="fg"><label class="fl">Nominal</label><input class="fc" type="text" id="ksb-nom" placeholder="0"></div>
+    <div class="fg"><label class="fl">Nominal</label><input class="fc num-format" type="text" id="ksb-nom" placeholder="0"></div>
     <div class="fg"><label class="fl">Keterangan</label><input class="fc" id="ksb-ket"></div>
     <button class="btn btn-p btn-w" onclick="submitKasbon()">💾 Simpan Kasbon</button>
   </div>`;
@@ -732,7 +786,7 @@ function kasbonRekap(){
 function kasbonLog(){
   const list=[...S.logKasbon].reverse().slice(0,60);
   if(list.length===0)return '<div class="empty">Belum ada data</div>';
-  return list.map((k,idx)=>{
+  return list.map(k=>{
     const ri=S.logKasbon.findIndex(x=>x.id===k.id);
     return `<div class="card"><div class="row">
       <div><div class="item-name">${esc(k.nama)}</div><div class="item-sub">${fDate(k.tgl)}${k.ket?' · '+esc(k.ket):''}</div></div>
@@ -746,16 +800,16 @@ function kasbonLog(){
 function delKasbon(idx){
   const k=S.logKasbon[idx];
   if(!k)return;
-  if(!confirm('Hapus kasbon '+esc(k.nama)+' '+fRp(k.nominal)+'?'))return;
+  if(!confirm('Hapus kasbon '+fRp(k.nominal)+' untuk '+esc(k.nama)+'?'))return;
   S.logKasbon.splice(idx,1);
   ss(KS.ksb,S.logKasbon);
   showToast('🗑 Dihapus');
   go('kasbon');
-  doSync('deleteKasbon',{id:k.id,tgl:k.tgl,idKaryawan:k.idKaryawan,nominal:k.nominal});
+  doSync('deleteKasbon',{tgl:k.tgl,idKaryawan:k.idKaryawan,nominal:k.nominal});
 }
 
 // ════════════════════════════════════════════════════
-// ── CLOSING GAJI (format angka) ─────────────────────
+// ── CLOSING GAJI ────────────────────────────────────
 let clsRekap=[],clsSel={};
 function pgClosing(){
   return `<div class="sec-title">Closing Gaji</div>
@@ -783,6 +837,7 @@ function genClosing(){
   if(!clsRekap.length){showToast('Tidak ada absensi belum dibayar','err');return;}
   showToast('✅ '+clsRekap.length+' karyawan ditemukan');
   document.getElementById('cls-rekap').innerHTML=buildClsRekap();
+  setTimeout(()=>applyNumberFormatting(document.getElementById('cls-rekap')),50);
 }
 function buildClsRekap(){
   return clsRekap.map((r,i)=>{
@@ -796,7 +851,7 @@ function buildClsRekap(){
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <label style="font-size:11px;color:#64748b;white-space:nowrap">Kasbon potong:</label>
-        <input class="fc" type="text" value="${formatAngkaInput(r.kasbonDipotong)}" style="flex:1" oninput="clsRekap[${i}].kasbonDipotong=parseAngka(this.value); this.value=formatAngkaInput(this.value); document.getElementById('cls-net-${i}').textContent=fRp(clsRekap[${i}].totalUpah-clsRekap[${i}].kasbonDipotong)">
+        <input class="fc num-format" type="text" value="${formatAngkaInput(r.kasbonDipotong)}" style="flex:1" oninput="clsRekap[${i}].kasbonDipotong=parseAngka(this.value); this.value=formatAngkaInput(this.value); document.getElementById('cls-net-${i}').innerHTML=fRp(clsRekap[${i}].totalUpah-clsRekap[${i}].kasbonDipotong)">
         <span id="cls-net-${i}" style="font-weight:700;font-size:13px;color:${net>=0?'#16a34a':'#dc2626'};white-space:nowrap">${fRp(net)}</span>
       </div></div>`;
   }).join('')+'<button class="btn btn-p btn-w" onclick="finalizeClosing()" style="margin-top:4px">🔒 Finalize Closing</button>';
@@ -821,7 +876,7 @@ function finalizeClosing(){
 }
 
 // ════════════════════════════════════════════════════
-// ── PEMBAYARAN KLIEN (format angka + hapus) ─────────
+// ── PEMBAYARAN (format angka + hapus) ───────────────
 function pgBayar(){
   const tab=S.tab.bayar||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -837,7 +892,7 @@ function bayarInput(){
     ${S.payItems.length>1?`<button style="font-size:12px;color:#ef4444;background:none;border:none;cursor:pointer" onclick="delPayRow(${i})">✕</button>`:''}</div>
     <div class="fg"><label class="fl">Proyek</label><select class="fc" onchange="S.payItems[${i}].kodeProj=this.value">${prjOpts.replace(`value="${esc(it.kodeProj)}"`,`value="${esc(it.kodeProj)}" selected`)}</select></div>
     <div class="g2">
-      <div class="fg"><label class="fl">Nominal</label><input class="fc" type="text" value="${formatAngkaInput(it.nominal)}" oninput="S.payItems[${i}].nominal=parseAngka(this.value)"></div>
+      <div class="fg"><label class="fl">Nominal</label><input class="fc num-format" type="text" value="${formatAngkaInput(it.nominal)}" oninput="S.payItems[${i}].nominal=parseAngka(this.value)"></div>
       <div class="fg"><label class="fl">Metode</label><select class="fc" onchange="S.payItems[${i}].metode=this.value"><option ${it.metode==='Transfer'?'selected':''}>Transfer</option><option ${it.metode==='Cash'?'selected':''}>Cash</option><option ${it.metode==='Cek'?'selected':''}>Cek</option><option ${it.metode==='Giro'?'selected':''}>Giro</option></select></div>
     </div>
     <div class="g2">
@@ -867,7 +922,7 @@ function submitPay(){
 }
 function bayarLog(){
   const list=[...S.logPembayaran].reverse().slice(0,60);
-  if(!list.length)return '<div class="empty">Belum ada data</div>';
+  if(list.length===0)return '<div class="empty">Belum ada data</div>';
   return list.map(p=>{
     const ri=S.logPembayaran.findIndex(x=>x.id===p.id);
     return `<div class="card"><div class="row">
@@ -891,7 +946,7 @@ function delPembayaran(idx){
 }
 
 // ════════════════════════════════════════════════════
-// ── RAB PROYEK (format angka) ───────────────────────
+// ── RAB (format angka) ─────────────────────────────
 function pgRAB(){
   const tab=S.tab.rab||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -910,7 +965,7 @@ function rabInput(){
   const nilaiKontrak=proj?.nilaiKontrak||0;
   const laba=nilaiKontrak-total;
   const existing=S.rab.find(r=>r.kodeProj===S.rabKodeProj);
-  return `<div class="card" style="margin-bottom:10px">
+  const html= `<div class="card" style="margin-bottom:10px">
     <div class="fg"><label class="fl">Proyek<span class="req">*</span></label>
       <select class="fc" onchange="loadRabForProj(this.value)">${prjOpts}</select>
     </div>
@@ -921,22 +976,22 @@ function rabInput(){
     <div style="font-size:11px;color:#94a3b8;margin-bottom:14px">Isi perkiraan biaya sebelum/saat proyek dimulai</div>
     <div class="fg">
       <label class="fl">🧱 Material</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.material)}" placeholder="0" oninput="S.rabNominal.material=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc num-format" type="text" value="${formatAngkaInput(nom.material)}" placeholder="0" oninput="S.rabNominal.material=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Cat, keramik, semen, besi, dll</div>
     </div>
     <div class="fg">
       <label class="fl">👷 Upah Tenaga</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.upah)}" placeholder="0" oninput="S.rabNominal.upah=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc num-format" type="text" value="${formatAngkaInput(nom.upah)}" placeholder="0" oninput="S.rabNominal.upah=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Upah harian tim sendiri</div>
     </div>
     <div class="fg">
       <label class="fl">🔨 Subkontraktor</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.subkon)}" placeholder="0" oninput="S.rabNominal.subkon=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc num-format" type="text" value="${formatAngkaInput(nom.subkon)}" placeholder="0" oninput="S.rabNominal.subkon=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Borongan / tim luar</div>
     </div>
     <div class="fg">
       <label class="fl">📦 Overhead / Lain-lain</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.overhead)}" placeholder="0" oninput="S.rabNominal.overhead=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc num-format" type="text" value="${formatAngkaInput(nom.overhead)}" placeholder="0" oninput="S.rabNominal.overhead=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Transport, konsumsi, biaya tak terduga</div>
     </div>
     ${total>0?`<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;padding:12px;margin-top:4px;margin-bottom:12px">
@@ -958,6 +1013,7 @@ function rabInput(){
     </div>`:''}
     <button class="btn btn-p btn-w" onclick="saveRAB()">💾 Simpan RAB</button>
   </div>`:'<div class="empty">Pilih proyek dulu untuk input RAB</div>'}`;
+  return html;
 }
 function loadRabForProj(kodeProj){
   S.rabKodeProj=kodeProj;
@@ -1040,7 +1096,7 @@ function rabPerbandingan(){
 }
 
 // ════════════════════════════════════════════════════
-// ── SUBKONTRAKTOR (format angka) ────────────────────
+// ── SUBKON (format angka + hapus log) ──────────────
 function pgSubkon(){
   const tab=S.tab.subkon||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -1057,25 +1113,18 @@ function subkonInput(){
   if(!S.masterSubkon.length)return `<div class="info-box">💡 Tambah data subkontraktor dulu di tab <strong>Master</strong></div><button class="btn btn-o btn-w" onclick="setTab('subkon','master')">→ Ke Master Subkon</button>`;
   const prjOpts=`<option value="">— Pilih Proyek —</option>`+S.projects.map(p=>`<option value="${esc(p.kode)}">${esc(p.kode)} — ${esc(p.nama)}</option>`).join('');
   const skOpts=`<option value="">— Pilih Subkon —</option>`+S.masterSubkon.map(sk=>`<option value="${esc(sk.id)}">${esc(sk.nama)} (${esc(sk.spesialisasi)})</option>`).join('');
-  const html = `<div class="card">
+  return `<div class="card">
     <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="sk-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Proyek<span class="req">*</span></label><select class="fc" id="sk-prj">${prjOpts}</select></div>
     <div class="fg"><label class="fl">Subkontraktor<span class="req">*</span></label><select class="fc" id="sk-sk">${skOpts}</select></div>
     <div class="fg"><label class="fl">Uraian Pekerjaan<span class="req">*</span></label><input class="fc" id="sk-urai" placeholder="Contoh: Waterproofing atap lantai 2"></div>
     <div class="g2">
-      <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" type="text" id="sk-kontrak" placeholder="0"></div>
+      <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc num-format" type="text" id="sk-kontrak" placeholder="0"></div>
       <div class="fg"><label class="fl">Tgl Mulai</label><input class="fc" type="date" id="sk-start" value="${today()}"></div>
     </div>
     <div class="fg"><label class="fl">Keterangan</label><input class="fc" id="sk-ket"></div>
     <button class="btn btn-p btn-w" onclick="submitSubkon()">💾 Simpan Pekerjaan Subkon</button>
   </div>`;
-  openModal(html);
-  setTimeout(()=>{
-    const el=document.getElementById('sk-kontrak');
-    if(el){
-      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
-    }
-  },50);
 }
 function submitSubkon(){
   const tgl=document.getElementById('sk-tgl').value;
@@ -1131,7 +1180,7 @@ function openBayarSubkon(idx){
   const ls=S.logSubkon[idx];
   const sudahBayar=ls.nominalBayar||0;
   const sisa=ls.nilaiKontrak-sudahBayar;
-  openModal(`<div class="modal-title">💰 Catat Pembayaran Subkon</div>
+  const html=`<div class="modal-title">💰 Catat Pembayaran Subkon</div>
     <div style="margin-bottom:12px">
       <div class="item-name">${esc(ls.namaSubkon)}</div>
       <div class="item-sub">${esc(ls.uraian)} · ${esc(ls.namaProj||ls.kodeProj)}</div>
@@ -1143,19 +1192,14 @@ function openBayarSubkon(idx){
     </div>
     <div class="fg"><label class="fl">Tgl Bayar</label><input class="fc" type="date" id="sb-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Nominal Bayar</label>
-      <input class="fc" type="text" id="sb-nom" value="${formatAngkaInput(sisa)}" max="${sisa}" placeholder="0">
+      <input class="fc num-format" type="text" id="sb-nom" value="${formatAngkaInput(sisa)}" max="${sisa}" placeholder="0">
       <div style="font-size:10px;color:#94a3b8;margin-top:3px">Maksimal sisa hutang: ${fRp(sisa)}</div>
     </div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveBayarSubkon(${idx})">💾 Simpan</button>
-    </div>`);
-  setTimeout(()=>{
-    const el=document.getElementById('sb-nom');
-    if(el){
-      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
-    }
-  },50);
+    </div>`;
+  openModal(html);
 }
 function saveBayarSubkon(idx){
   const nom=parseAngka(document.getElementById('sb-nom').value);
@@ -1289,7 +1333,6 @@ function subkonRekap(){
 
 function setTab(page,tab){S.tab[page]=tab;go(page);}
 
-// ── init ───────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',async()=>{
   loadLocal();
   S.webAppUrl=sg(KS.url,'');S.pollInterval=Number(sg(KS.poll,60))||60;

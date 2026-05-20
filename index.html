@@ -122,7 +122,7 @@ button{-webkit-appearance:none;font-family:inherit}
 <script>
 'use strict';
 // ═══════════════════════════════════════════════════
-// ARTHABUMI v1.8 — Format Angka Titik Ribuan + Hapus Pembayaran
+// ARTHABUMI v1.8 — Format Angka Titik Ribuan + Hapus Kasbon
 // Pure Vanilla JS — Zero Dependencies
 // ═══════════════════════════════════════════════════
 
@@ -393,7 +393,7 @@ function pgDashboard(){
 }
 
 // ════════════════════════════════════════════════════
-// ── MASTER PROYEK (dengan format angka) ───────────────
+// ── MASTER PROYEK (format angka) ─────────────────────
 function pgProject(){
   return `<div class="row" style="margin-bottom:11px">
     <div class="sec-title" style="margin:0">Master Proyek</div>
@@ -414,40 +414,40 @@ function pgProject(){
 }
 function openAddProject(){
   const kode=padId('PRJ',S.projects,'kode');
-  openModal(`<div class="modal-title">Tambah Proyek</div>
+  const modalHtml=`<div class="modal-title">Tambah Proyek</div>
     <div class="g2"><div class="fg"><label class="fl">Kode<span class="req">*</span></label><input class="fc" id="p-kode" value="${esc(kode)}"></div>
     <div class="fg"><label class="fl">Status</label><select class="fc" id="p-sts"><option>Berjalan</option><option>Selesai</option><option>Hold</option><option>Batal</option></select></div></div>
     <div class="fg"><label class="fl">Nama Proyek<span class="req">*</span></label><input class="fc" id="p-nama" placeholder="Renovasi Pak Budi"></div>
     <div class="g2"><div class="fg"><label class="fl">Jenis</label><select class="fc" id="p-jenis"><option>Renovasi</option><option>Pembangunan</option><option>Interior</option><option>Besi</option><option>Waterproofing</option><option>Lainnya</option></select></div>
-    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" id="p-kontrak" type="text" placeholder="350000000"></div></div>
+    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" type="text" id="p-kontrak" placeholder="350000000"></div></div>
     <div class="fg"><label class="fl">Tgl Mulai</label><input class="fc" id="p-tgl" type="date"></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveProject()">💾 Simpan</button>
-    </div>`);
-  // event listener untuk format angka
+    </div>`;
+  openModal(modalHtml);
   setTimeout(()=>{
     const el=document.getElementById('p-kontrak');
     if(el){
       el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
-      if(el.value) el.value=formatAngkaInput(parseAngka(el.value));
     }
   },50);
 }
 function openEditProject(i){
   const p=S.projects[i];
-  openModal(`<div class="modal-title">Edit Proyek</div>
+  const modalHtml=`<div class="modal-title">Edit Proyek</div>
     <input type="hidden" id="p-idx" value="${i}">
     <div class="g2"><div class="fg"><label class="fl">Kode</label><input class="fc" id="p-kode" value="${esc(p.kode)}" disabled></div>
     <div class="fg"><label class="fl">Status</label><select class="fc" id="p-sts"><option ${p.status==='Berjalan'?'selected':''}>Berjalan</option><option ${p.status==='Selesai'?'selected':''}>Selesai</option><option ${p.status==='Hold'?'selected':''}>Hold</option><option ${p.status==='Batal'?'selected':''}>Batal</option></select></div></div>
     <div class="fg"><label class="fl">Nama Proyek<span class="req">*</span></label><input class="fc" id="p-nama" value="${esc(p.nama)}"></div>
     <div class="g2"><div class="fg"><label class="fl">Jenis</label><select class="fc" id="p-jenis"><option ${p.jenis==='Renovasi'?'selected':''}>Renovasi</option><option ${p.jenis==='Pembangunan'?'selected':''}>Pembangunan</option><option ${p.jenis==='Interior'?'selected':''}>Interior</option><option ${p.jenis==='Besi'?'selected':''}>Besi</option><option ${p.jenis==='Waterproofing'?'selected':''}>Waterproofing</option><option ${p.jenis==='Lainnya'?'selected':''}>Lainnya</option></select></div>
-    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" id="p-kontrak" type="text" value="${formatAngkaInput(p.nilaiKontrak)}"></div></div>
+    <div class="fg"><label class="fl">Nilai Kontrak<span class="req">*</span></label><input class="fc" type="text" id="p-kontrak" value="${formatAngkaInput(p.nilaiKontrak)}"></div></div>
     <div class="fg"><label class="fl">Tgl Mulai</label><input class="fc" id="p-tgl" type="date" value="${p.tglMulai||''}"></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveProject(true)">💾 Simpan</button>
-    </div>`);
+    </div>`;
+  openModal(modalHtml);
   setTimeout(()=>{
     const el=document.getElementById('p-kontrak');
     if(el){
@@ -473,7 +473,7 @@ function delProject(kode){
 }
 
 // ════════════════════════════════════════════════════
-// ── PEMBELIAN (dengan format angka) ──────────────────
+// ── PEMBELIAN (format angka) ────────────────────────
 function pgBeli(){
   const tab=S.tab.beli||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -486,7 +486,7 @@ function beliInput(){
   const brg=S.masterBarang.map(b=>`<option value="${esc(b.nama)}">`).join('');
   const tk=S.masterToko.map(t=>`<option value="${esc(t)}">`).join('');
   const prjOpts=`<option value="">— Pilih Proyek —</option>`+S.projects.map(p=>`<option value="${esc(p.kode)}">${esc(p.kode)}</option>`).join('');
-  const items=S.formItems.map((it,i)=>`<div class="sub-card">
+  const itemsHtml=S.formItems.map((it,i)=>`<div class="sub-card">
     <div class="row" style="margin-bottom:8px">
       <span style="font-size:11px;font-weight:600;color:#64748b">Item ${i+1}</span>
       ${S.formItems.length>1?`<button style="font-size:12px;color:#ef4444;background:none;border:none;cursor:pointer" onclick="delBeliRow(${i})">✕ Hapus</button>`:''}
@@ -508,18 +508,24 @@ function beliInput(){
       </div>
     </div>
   </div>`).join('');
-  return `<div style="display:flex;justify-content:flex-end;margin-bottom:8px">
+  const modalHtml=`<div style="display:flex;justify-content:flex-end;margin-bottom:8px">
     <button class="btn btn-o btn-sm" onclick="openPasteBeli()">📋 Paste Daftar</button>
   </div>
   <div class="card">
     <div class="g2"><div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="beli-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Proyek</label><select class="fc" id="beli-prj">${prjOpts}</select></div></div>
-    ${items}
+    ${itemsHtml}
     <div class="act-row">
       <button class="btn btn-g" style="flex:1" onclick="addBeliRow()">+ Baris</button>
       <button class="btn btn-p" style="flex:1" onclick="submitBeli()">💾 Simpan</button>
     </div>
   </div>`;
+  openModal(modalHtml);
+  setTimeout(()=>{
+    document.querySelectorAll('#modal-body .sub-card input[type="text"]').forEach(el=>{
+      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
+    });
+  },50);
 }
 function beliLog(){
   const list=[...S.pembelian].reverse().slice(0,60);
@@ -601,13 +607,12 @@ function applyPasteBeli(){
   const{items,errors}=parsePasteText(text);if(!items.length){showToast('Tidak ada item valid','err');return;}
   const defaultOnly=S.formItems.length===1&&!S.formItems[0].namaBarang&&!S.formItems[0].harga;
   S.formItems=defaultOnly?items:[...S.formItems,...items];
-  // reset harga yang sudah di-format
   S.formItems.forEach(it=>{it.harga=Number(it.harga);});
   closeModal();showToast('✅ '+items.length+' item ditambahkan'+(errors.length?' ('+errors.length+' dilewati)':''));setTab('beli','input');
 }
 
 // ════════════════════════════════════════════════════
-// ── MASTER KARYAWAN (dengan format angka) ────────────
+// ── MASTER KARYAWAN (format angka) ──────────────────
 function pgKaryawan(){
   return `<div class="row" style="margin-bottom:11px">
     <div class="sec-title" style="margin:0">Karyawan</div>
@@ -639,16 +644,16 @@ function krModal(k,i){
     <div class="g2"><div class="fg"><label class="fl">ID<span class="req">*</span></label><input class="fc" id="k-id" value="${isEdit?esc(k.id):padId('KRY',S.karyawan)}" ${isEdit?'disabled':''}></div>
     <div class="fg"><label class="fl">Jabatan</label><select class="fc" id="k-jab">${['Mandor','Tukang','Pembantu','Tim Besi','Tim Interior'].map(j=>`<option ${isEdit&&k.jabatan===j?'selected':''}>${j}</option>`).join('')}</select></div></div>
     <div class="fg"><label class="fl">Nama<span class="req">*</span></label><input class="fc" id="k-nama" value="${isEdit?esc(k.nama):''}"></div>
-    <div class="g2"><div class="fg"><label class="fl">Upah Harian<span class="req">*</span></label><input class="fc" id="k-upah" type="text" value="${isEdit?formatAngkaInput(k.upahHarian):''}"></div>
+    <div class="g2"><div class="fg"><label class="fl">Upah Harian<span class="req">*</span></label><input class="fc" type="text" id="k-upah" value="${isEdit?formatAngkaInput(k.upahHarian):''}"></div>
     <div class="fg"><label class="fl">No HP</label><input class="fc" id="k-hp" type="tel" value="${isEdit?esc(k.noHP||''):''}"></div></div>
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveKaryawan(${isEdit})">💾 Simpan</button>
     </div>`;
 }
-function openAddKaryawan(){openModal(krModal(null,null)); setTimeout(formatNumbersInModal,50);}
-function openEditKaryawan(i){openModal(krModal(S.karyawan[i],i)); setTimeout(formatNumbersInModal,50);}
-function formatNumbersInModal(){
+function openAddKaryawan(){openModal(krModal(null,null)); setTimeout(formatKaryawanNumber,50);}
+function openEditKaryawan(i){openModal(krModal(S.karyawan[i],i)); setTimeout(formatKaryawanNumber,50);}
+function formatKaryawanNumber(){
   const el=document.getElementById('k-upah');
   if(el){
     el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
@@ -745,7 +750,7 @@ function delAbsensi(idx){
 }
 
 // ════════════════════════════════════════════════════
-// ── KASBON (dengan format angka) ─────────────────────
+// ── KASBON (format angka + hapus) ────────────────────
 function pgKasbon(){
   const tab=S.tab.kasbon||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -759,7 +764,7 @@ function pgKasbon(){
 }
 function kasbonInput(){
   const krOpts=`<option value="">— Pilih Karyawan —</option>`+S.karyawan.map(k=>`<option value="${esc(k.id)}">${esc(k.nama)}</option>`).join('');
-  return `<div class="card">
+  const modalHtml=`<div class="card">
     <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="ksb-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Karyawan</label><select class="fc" id="ksb-kr">${krOpts}</select></div>
     <div class="fg"><label class="fl">Tipe</label><select class="fc" id="ksb-tipe"><option>AMBIL</option><option>POTONG</option></select></div>
@@ -767,6 +772,13 @@ function kasbonInput(){
     <div class="fg"><label class="fl">Keterangan</label><input class="fc" id="ksb-ket"></div>
     <button class="btn btn-p btn-w" onclick="submitKasbon()">💾 Simpan Kasbon</button>
   </div>`;
+  openModal(modalHtml);
+  setTimeout(()=>{
+    const el=document.getElementById('ksb-nom');
+    if(el){
+      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
+    }
+  },50);
 }
 function submitKasbon(){
   const id=document.getElementById('ksb-kr').value;
@@ -791,14 +803,31 @@ function kasbonRekap(){
 }
 function kasbonLog(){
   const list=[...S.logKasbon].reverse().slice(0,60);
-  return list.length===0?'<div class="empty">Belum ada data</div>':list.map(k=>`<div class="card"><div class="row">
-    <div><div class="item-name">${esc(k.nama)}</div><div class="item-sub">${fDate(k.tgl)}${k.ket?' · '+esc(k.ket):''}</div></div>
-    <div style="text-align:right;flex-shrink:0"><div style="font-weight:700;font-size:13px">${fRp(k.nominal)}</div>${bdg(k.tipe)}</div>
-  </div></div>`).join('');
+  if(!list.length)return '<div class="empty">Belum ada data</div>';
+  return list.map(k=>{
+    const ri=S.logKasbon.findIndex(x=>x.id===k.id);
+    return `<div class="card"><div class="row">
+      <div><div class="item-name">${esc(k.nama)}</div><div class="item-sub">${fDate(k.tgl)}${k.ket?' · '+esc(k.ket):''}</div></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:8px;flex-shrink:0">
+        <div style="text-align:right"><div style="font-weight:700;font-size:13px">${fRp(k.nominal)}</div>${bdg(k.tipe)}</div>
+        <button style="background:#fee2e2;border:none;border-radius:7px;padding:5px 9px;font-size:14px;cursor:pointer;color:#b91c1c" onclick="delKasbon(${ri})">🗑</button>
+      </div>
+    </div></div>`;
+  }).join('');
+}
+function delKasbon(idx){
+  const k=S.logKasbon[idx];
+  if(!k)return;
+  if(!confirm('Hapus kasbon '+fRp(k.nominal)+' untuk '+esc(k.nama)+'?'))return;
+  S.logKasbon.splice(idx,1);
+  ss(KS.ksb,S.logKasbon);
+  showToast('🗑 Dihapus');
+  go('kasbon');
+  doSync('deleteKasbon',{tgl:k.tgl,idKaryawan:k.idKaryawan,nominal:k.nominal});
 }
 
 // ════════════════════════════════════════════════════
-// ── CLOSING GAJI ─────────────────────────────────────
+// ── CLOSING GAJI (format angka) ──────────────────────
 let clsRekap=[],clsSel={};
 function pgClosing(){
   return `<div class="sec-title">Closing Gaji</div>
@@ -864,7 +893,7 @@ function finalizeClosing(){
 }
 
 // ════════════════════════════════════════════════════
-// ── PEMBAYARAN KLIEN (dengan format angka + hapus) ───
+// ── PEMBAYARAN KLIEN (format angka + hapus) ─────────
 function pgBayar(){
   const tab=S.tab.bayar||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -875,7 +904,7 @@ function pgBayar(){
 function bayarInput(){
   if(!S.payItems||!S.payItems.length)S.payItems=[{kodeProj:'',nominal:'',metode:'Transfer',bank:'',ket:'',ref:''}];
   const prjOpts=`<option value="">— Pilih Proyek —</option>`+S.projects.map(p=>`<option value="${esc(p.kode)}">${esc(p.kode)} — ${esc(p.nama)}</option>`).join('');
-  const items=S.payItems.map((it,i)=>`<div class="sub-card">
+  const itemsHtml=S.payItems.map((it,i)=>`<div class="sub-card">
     <div class="row" style="margin-bottom:8px"><span style="font-size:11px;font-weight:600;color:#64748b">Pembayaran ${i+1}</span>
     ${S.payItems.length>1?`<button style="font-size:12px;color:#ef4444;background:none;border:none;cursor:pointer" onclick="delPayRow(${i})">✕</button>`:''}</div>
     <div class="fg"><label class="fl">Proyek</label><select class="fc" onchange="S.payItems[${i}].kodeProj=this.value">${prjOpts.replace(`value="${esc(it.kodeProj)}"`,`value="${esc(it.kodeProj)}" selected`)}</select></div>
@@ -889,14 +918,20 @@ function bayarInput(){
     </div>
     <div class="fg"><label class="fl">Keterangan</label><input class="fc" value="${esc(it.ket)}" oninput="S.payItems[${i}].ket=this.value"></div>
   </div>`).join('');
-  return `<div class="card">
+  const modalHtml=`<div class="card">
     <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="pay-tgl" value="${today()}"></div>
-    ${items}
+    ${itemsHtml}
     <div class="act-row">
       <button class="btn btn-g" style="flex:1" onclick="addPayRow()">+ Baris</button>
       <button class="btn btn-p" style="flex:1" onclick="submitPay()">💾 Simpan</button>
     </div>
   </div>`;
+  openModal(modalHtml);
+  setTimeout(()=>{
+    document.querySelectorAll('#modal-body .sub-card input[type="text"]').forEach(el=>{
+      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
+    });
+  },50);
 }
 function addPayRow(){S.payItems.push({kodeProj:'',nominal:'',metode:'Transfer',bank:'',ket:'',ref:''});go('bayar');}
 function delPayRow(i){S.payItems.splice(i,1);go('bayar');}
@@ -934,7 +969,7 @@ function delPembayaran(idx){
 }
 
 // ════════════════════════════════════════════════════
-// ── RAB PROYEK (dengan format angka) ─────────────────
+// ── RAB PROYEK (format angka) ────────────────────────
 function pgRAB(){
   const tab=S.tab.rab||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -953,7 +988,7 @@ function rabInput(){
   const nilaiKontrak=proj?.nilaiKontrak||0;
   const laba=nilaiKontrak-total;
   const existing=S.rab.find(r=>r.kodeProj===S.rabKodeProj);
-  return `<div class="card" style="margin-bottom:10px">
+  const modalHtml=`<div class="card" style="margin-bottom:10px">
     <div class="fg"><label class="fl">Proyek<span class="req">*</span></label>
       <select class="fc" onchange="loadRabForProj(this.value)">${prjOpts}</select>
     </div>
@@ -964,22 +999,22 @@ function rabInput(){
     <div style="font-size:11px;color:#94a3b8;margin-bottom:14px">Isi perkiraan biaya sebelum/saat proyek dimulai</div>
     <div class="fg">
       <label class="fl">🧱 Material</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.material)}" placeholder="0" oninput="S.rabNominal.material=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc" type="text" id="rab-material" value="${formatAngkaInput(nom.material)}" placeholder="0">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Cat, keramik, semen, besi, dll</div>
     </div>
     <div class="fg">
       <label class="fl">👷 Upah Tenaga</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.upah)}" placeholder="0" oninput="S.rabNominal.upah=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc" type="text" id="rab-upah" value="${formatAngkaInput(nom.upah)}" placeholder="0">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Upah harian tim sendiri</div>
     </div>
     <div class="fg">
       <label class="fl">🔨 Subkontraktor</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.subkon)}" placeholder="0" oninput="S.rabNominal.subkon=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc" type="text" id="rab-subkon" value="${formatAngkaInput(nom.subkon)}" placeholder="0">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Borongan / tim luar</div>
     </div>
     <div class="fg">
       <label class="fl">📦 Overhead / Lain-lain</label>
-      <input class="fc" type="text" value="${formatAngkaInput(nom.overhead)}" placeholder="0" oninput="S.rabNominal.overhead=parseAngka(this.value); this.value=formatAngkaInput(this.value)">
+      <input class="fc" type="text" id="rab-overhead" value="${formatAngkaInput(nom.overhead)}" placeholder="0">
       <div style="font-size:10px;color:#94a3b8;margin-top:2px">Transport, konsumsi, biaya tak terduga</div>
     </div>
     ${total>0?`<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:11px;padding:12px;margin-top:4px;margin-bottom:12px">
@@ -1001,6 +1036,15 @@ function rabInput(){
     </div>`:''}
     <button class="btn btn-p btn-w" onclick="saveRAB()">💾 Simpan RAB</button>
   </div>`:'<div class="empty">Pilih proyek dulu untuk input RAB</div>'}`;
+  openModal(modalHtml);
+  setTimeout(()=>{
+    ['rab-material','rab-upah','rab-subkon','rab-overhead'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){
+        el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
+      }
+    });
+  },50);
 }
 function loadRabForProj(kodeProj){
   S.rabKodeProj=kodeProj;
@@ -1011,10 +1055,13 @@ function loadRabForProj(kodeProj){
 }
 function saveRAB(){
   if(!S.rabKodeProj){showToast('Pilih proyek dulu','err');return;}
-  const nom=S.rabNominal;
-  const total=(Number(nom.material)||0)+(Number(nom.upah)||0)+(Number(nom.subkon)||0)+(Number(nom.overhead)||0);
+  const material=parseAngka(document.getElementById('rab-material')?.value);
+  const upah=parseAngka(document.getElementById('rab-upah')?.value);
+  const subkon=parseAngka(document.getElementById('rab-subkon')?.value);
+  const overhead=parseAngka(document.getElementById('rab-overhead')?.value);
+  const total=(material||0)+(upah||0)+(subkon||0)+(overhead||0);
   if(!total){showToast('Isi minimal satu angka','err');return;}
-  const rabData={kodeProj:S.rabKodeProj,tglUpdate:today(),material:Number(nom.material),upah:Number(nom.upah),subkon:Number(nom.subkon),overhead:Number(nom.overhead)};
+  const rabData={kodeProj:S.rabKodeProj,tglUpdate:today(),material:material||0,upah:upah||0,subkon:subkon||0,overhead:overhead||0};
   const idx=S.rab.findIndex(r=>r.kodeProj===S.rabKodeProj);
   if(idx>=0)S.rab[idx]=rabData;else S.rab.push(rabData);
   ss(KS.rab,S.rab);showToast('✅ RAB disimpan');go('rab');
@@ -1083,7 +1130,7 @@ function rabPerbandingan(){
 }
 
 // ════════════════════════════════════════════════════
-// ── SUBKONTRAKTOR (dengan format angka) ──────────────
+// ── SUBKONTRAKTOR (format angka) ─────────────────────
 function pgSubkon(){
   const tab=S.tab.subkon||'input';
   return `<div class="row" style="margin-bottom:11px">
@@ -1100,7 +1147,7 @@ function subkonInput(){
   if(!S.masterSubkon.length)return `<div class="info-box">💡 Tambah data subkontraktor dulu di tab <strong>Master</strong></div><button class="btn btn-o btn-w" onclick="setTab('subkon','master')">→ Ke Master Subkon</button>`;
   const prjOpts=`<option value="">— Pilih Proyek —</option>`+S.projects.map(p=>`<option value="${esc(p.kode)}">${esc(p.kode)} — ${esc(p.nama)}</option>`).join('');
   const skOpts=`<option value="">— Pilih Subkon —</option>`+S.masterSubkon.map(sk=>`<option value="${esc(sk.id)}">${esc(sk.nama)} (${esc(sk.spesialisasi)})</option>`).join('');
-  return `<div class="card">
+  const modalHtml=`<div class="card">
     <div class="fg"><label class="fl">Tanggal</label><input class="fc" type="date" id="sk-tgl" value="${today()}"></div>
     <div class="fg"><label class="fl">Proyek<span class="req">*</span></label><select class="fc" id="sk-prj">${prjOpts}</select></div>
     <div class="fg"><label class="fl">Subkontraktor<span class="req">*</span></label><select class="fc" id="sk-sk">${skOpts}</select></div>
@@ -1112,6 +1159,13 @@ function subkonInput(){
     <div class="fg"><label class="fl">Keterangan</label><input class="fc" id="sk-ket"></div>
     <button class="btn btn-p btn-w" onclick="submitSubkon()">💾 Simpan Pekerjaan Subkon</button>
   </div>`;
+  openModal(modalHtml);
+  setTimeout(()=>{
+    const el=document.getElementById('sk-kontrak');
+    if(el){
+      el.addEventListener('blur',function(){this.value=formatAngkaInput(parseAngka(this.value));});
+    }
+  },50);
 }
 function submitSubkon(){
   const tgl=document.getElementById('sk-tgl').value;
@@ -1167,7 +1221,7 @@ function openBayarSubkon(idx){
   const ls=S.logSubkon[idx];
   const sudahBayar=ls.nominalBayar||0;
   const sisa=ls.nilaiKontrak-sudahBayar;
-  openModal(`<div class="modal-title">💰 Catat Pembayaran Subkon</div>
+  const modalHtml=`<div class="modal-title">💰 Catat Pembayaran Subkon</div>
     <div style="margin-bottom:12px">
       <div class="item-name">${esc(ls.namaSubkon)}</div>
       <div class="item-sub">${esc(ls.uraian)} · ${esc(ls.namaProj||ls.kodeProj)}</div>
@@ -1185,7 +1239,8 @@ function openBayarSubkon(idx){
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveBayarSubkon(${idx})">💾 Simpan</button>
-    </div>`);
+    </div>`;
+  openModal(modalHtml);
   setTimeout(()=>{
     const el=document.getElementById('sb-nom');
     if(el){
@@ -1240,7 +1295,7 @@ function subkonMaster(){
 }
 function openAddSubkon(){
   const id=padId('SK',S.masterSubkon);
-  openModal(`<div class="modal-title">Tambah Subkontraktor</div>
+  const modalHtml=`<div class="modal-title">Tambah Subkontraktor</div>
     <div class="g2"><div class="fg"><label class="fl">ID</label><input class="fc" id="sk2-id" value="${esc(id)}" disabled></div>
     <div class="fg"><label class="fl">No HP</label><input class="fc" id="sk2-hp" type="tel" placeholder="08xx"></div></div>
     <div class="fg"><label class="fl">Nama / Tim<span class="req">*</span></label><input class="fc" id="sk2-nama" placeholder="Nama subkontraktor atau tim"></div>
@@ -1249,11 +1304,12 @@ function openAddSubkon(){
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveSubkon(false)">💾 Simpan</button>
-    </div>`);
+    </div>`;
+  openModal(modalHtml);
 }
 function openEditSubkon(i){
   const sk=S.masterSubkon[i];
-  openModal(`<div class="modal-title">Edit Subkontraktor</div>
+  const modalHtml=`<div class="modal-title">Edit Subkontraktor</div>
     <input type="hidden" id="sk2-idx" value="${i}">
     <div class="g2"><div class="fg"><label class="fl">ID</label><input class="fc" id="sk2-id" value="${esc(sk.id)}" disabled></div>
     <div class="fg"><label class="fl">No HP</label><input class="fc" id="sk2-hp" type="tel" value="${esc(sk.noHP||'')}"></div></div>
@@ -1263,7 +1319,8 @@ function openEditSubkon(i){
     <div class="act-row" style="justify-content:flex-end">
       <button class="btn btn-g" onclick="closeModal()">Batal</button>
       <button class="btn btn-p" onclick="saveSubkon(true)">💾 Simpan</button>
-    </div>`);
+    </div>`;
+  openModal(modalHtml);
 }
 function saveSubkon(isEdit){
   const nama=document.getElementById('sk2-nama').value.trim();if(!nama){showToast('Nama wajib diisi','err');return;}
